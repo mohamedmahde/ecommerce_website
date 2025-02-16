@@ -3,6 +3,8 @@
 
 <head>
     @include('admin.css')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
     <style>
         .div_deg {
 
@@ -29,6 +31,7 @@
 
             border: 1px solid skyblue;
             text-align: center;
+            color: white
         }
     </style>
 </head>
@@ -53,15 +56,15 @@
                         <th>Quantity</th>
                         <th>Image</th>
                     </tr>
-                    @foreach ($product as $product)
+                    @foreach ($product as $products)
                         <tr>
-                            <td>{{ $product->title }}</td>
-                            <td>{{ $product->descripton }}</td>
-                            <td>{{ $product->category }}</td>
-                            <td>{{ $product->price }}</td>
-                            <td>{{ $product->quantity }}</td>
+                            <td>{{ $products->title }}</td>
+                            <td>{{ $products->descripton }}</td>
+                            <td>{{ $products->category }}</td>
+                            <td>{{ $products->price }}</td>
+                            <td>{{ $products->quantity }}</td>
                             <td>
-                                <img height="120" width="120" src="products/{{ $product->image }}" alt="">
+                                <img height="120" width="120" src="products/{{ $products->image }}" alt="">
                             </td>
                         </tr>
                     @endforeach
@@ -69,6 +72,11 @@
 
                 </table>
             </div>
+            <div class="div_deg">
+                {{ $product->onEachSide(1)->links() }}
+
+            </div>
+
         </div>
     </div>
     </div>
