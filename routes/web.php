@@ -32,4 +32,6 @@ Route::post('/add_category' , [AdminController::class, 'add_category'])->middlew
 Route::get('/delete_category/{id}' , [AdminController::class, 'delete_category'])->middleware(['auth' , 'admin']);
 Route::get('/edit_category/{id}' , [AdminController::class, 'edit_category'])->middleware(['auth' , 'admin']);
 Route::post('/upadte_category/{id}' , [AdminController::class, 'upadte_category'])->middleware(['auth' , 'admin']);
+Route::get('/add_product' , [AdminController::class, 'add_product'])->middleware(['auth' , 'admin']);
+Route::post('/upload_product' , [AdminController::class, 'upload_product'])->middleware(['auth' , 'admin']);
 
