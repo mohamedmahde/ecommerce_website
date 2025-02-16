@@ -59,7 +59,7 @@
                     @foreach ($product as $products)
                         <tr>
                             <td>{{ $products->title }}</td>
-                            <td>{{ $products->descripton }}</td>
+                            <td>{!! Str::words($products->descripton,20) !!}</td>
                             <td>{{ $products->category }}</td>
                             <td>{{ $products->price }}</td>
                             <td>{{ $products->quantity }}</td>
