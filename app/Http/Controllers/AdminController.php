@@ -68,7 +68,7 @@ class AdminController extends Controller
         $category = Category::all();
         return view('admin.add_product', compact('category'));
     }
-   //upload product data to database
+    //upload product data to database
     public function upload_product(Request $request)
     {
 
@@ -91,14 +91,25 @@ class AdminController extends Controller
         }
 
         $data->save();
-        toastr()->closeButton()->addSuccess('Image added successfully');
+        toastr()->closeButton()->addSuccess('product added successfully');
 
         return redirect()->back();
     }
 
     //view product with paginate page
-    public function view_product(){
-        $product = Product::paginate(5);
-        return view('admin.view_product' , compact('product'));
+    public function view_product()
+    {
+        $product = Product::paginate(3);
+        return view('admin.view_product', compact('product'));
+    }
+
+    public function delete_product($id)
+    {
+
+        $data = Product::findOrfail($id);
+        $data->delete();
+        toastr()->closeButton()->addSuccess('product Deleted successfully');
+
+        return redirect()->back();
     }
 }

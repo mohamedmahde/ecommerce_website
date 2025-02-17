@@ -3,7 +3,6 @@
 
 <head>
     @include('admin.css')
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <style>
         .div_deg {
@@ -55,32 +54,61 @@
                         <th>Price</th>
                         <th>Quantity</th>
                         <th>Image</th>
+                        <th>Delete</th>
                     </tr>
                     @foreach ($product as $products)
                         <tr>
                             <td>{{ $products->title }}</td>
-                            <td>{!! Str::words($products->descripton,20) !!}</td>
+                            <td>{!! Str::limit($products->descripton,20) !!}</td>
                             <td>{{ $products->category }}</td>
                             <td>{{ $products->price }}</td>
                             <td>{{ $products->quantity }}</td>
                             <td>
                                 <img height="120" width="120" src="products/{{ $products->image }}" alt="">
                             </td>
+
+                            <td><a class="btn btn-danger" onclick="confirmation(event)" href="{{ url('delete_product' , $products->id) }}">Delete</a></td>
                         </tr>
                     @endforeach
 
 
                 </table>
+                
             </div>
             <div class="div_deg">
                 {{ $product->onEachSide(1)->links() }}
 
             </div>
+          
 
         </div>
     </div>
     </div>
+    <script>
+        function confirmation(ev) {
+    ev.preventDefault();
+
+    var urlToRedirect = ev.currentTarget.getAttribute('href');
+    
+    console.log(urlToRedirect);
+
+    swal({
+        title: "Are you sure you want to delete this?",
+        text: "The deletion will be permanent.",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    })
+    .then((willDelete) => {
+        if (willDelete) {
+            window.location.href = urlToRedirect;
+        }
+    });
+}
+    </script>
     <!-- JavaScript files-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <script src="{{ asset('admincss/vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('admincss/vendor/popper.js/umd/popper.min.js') }}"></script>
     <script src="{{ asset('admincss/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
