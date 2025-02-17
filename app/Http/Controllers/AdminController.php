@@ -109,28 +109,32 @@ class AdminController extends Controller
         $data = Product::findOrfail($id);
 
         // Delete Image from Public Folder
-        $image_path = public_path('products/'.$data->iamge);
-        if(file_exists($image_path)){
+        $image_path = public_path('products/' . $data->iamge);
+        if (file_exists($image_path)) {
 
             unlink($image_path);
         }
 
         $data->delete();
-        
+
         toastr()->closeButton()->addSuccess('product Deleted successfully');
 
         return redirect()->back();
     }
 
     //update product data
-    public function update_product($id){
+    public function update_product($id)
+    {
         $data = Product::find($id);
         $category = Category::all();
-        return view('admin.update_product' , compact('data' , 'category'));
+        return view('admin.update_product', compact('data', 'category'));
         return redirect()->back();
     }
 
-    public function edit_product(Request $request , $id)  {
+
+    //Edit product data
+    public function edit_product(Request $request, $id)
+    {
 
         $data = Product::find($id);
         $data->title = $request->title;
@@ -139,7 +143,7 @@ class AdminController extends Controller
         $data->quantity = $request->quantity;
         $data->category = $request->category;
 
-        
+
         $image = $request->image;
 
         if ($image) {
@@ -154,6 +158,15 @@ class AdminController extends Controller
         toastr()->closeButton()->addSuccess('product Updated successfully');
 
         return redirect('view_product');
-        
+    }
+
+    //search product in view product page
+    public function product_search(Request $request)
+    {
+
+        $search = $request->search;
+        $product = Product::where('title', 'LIKE','%' . $search .'%')->orWhere('category', 'LIKE','%' . $search .'%')->paginate(3);
+
+        return view('admin.view_product' , compact('product'));
     }
 }
