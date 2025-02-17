@@ -77,7 +77,6 @@ class AdminController extends Controller
         $data->descripton = $request->descripton;
         $data->price = $request->price;
         $data->quantity = $request->quantity;
-        $data->title = $request->title;
         $data->category = $request->category;
 
         $image = $request->image;
@@ -103,18 +102,58 @@ class AdminController extends Controller
         return view('admin.view_product', compact('product'));
     }
 
+    //delete product data
     public function delete_product($id)
     {
 
         $data = Product::findOrfail($id);
+
+        // Delete Image from Public Folder
         $image_path = public_path('products/'.$data->iamge);
         if(file_exists($image_path)){
 
             unlink($image_path);
         }
+
         $data->delete();
+        
         toastr()->closeButton()->addSuccess('product Deleted successfully');
 
         return redirect()->back();
+    }
+
+    //update product data
+    public function update_product($id){
+        $data = Product::find($id);
+        $category = Category::all();
+        return view('admin.update_product' , compact('data' , 'category'));
+        return redirect()->back();
+    }
+
+    public function edit_product(Request $request , $id)  {
+
+        $data = Product::find($id);
+        $data->title = $request->title;
+        $data->descripton = $request->descripton;
+        $data->price = $request->price;
+        $data->quantity = $request->quantity;
+        $data->category = $request->category;
+
+        
+        $image = $request->image;
+
+        if ($image) {
+
+            $imagename = time() . '.' . $image->getClientOriginalExtension();
+
+            $request->image->move('products',  $imagename);
+            $data->image  = $imagename;
+        }
+
+        $data->save();
+        toastr()->closeButton()->addSuccess('product Updated successfully');
+
+        return redirect('view_product');
+        
     }
 }
