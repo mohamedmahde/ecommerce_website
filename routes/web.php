@@ -14,6 +14,7 @@ Route::get('/dashboard' , [HomeController::class, 'login_home'])->middleware(['a
 
 
 
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -41,3 +42,4 @@ Route::post('/edit_product/{id}' , [AdminController::class, 'edit_product'])->mi
 Route::any('/product_search' , [AdminController::class, 'product_search'])->name('product_search')->middleware(['auth' , 'admin']);
 
 
+Route::get('/product_details/{id}' , [HomeController::class, 'product_details']);
