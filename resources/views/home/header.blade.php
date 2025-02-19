@@ -37,9 +37,14 @@
             <div class="user_option">
                 @if (Route::has('login'))
                     @auth
+
+
                     <a href="">
-                      <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+                      <i class="fa fa-shopping-bag" aria-hidden="true">  {{ $count }}</i>
+                    
                   </a>
+
+
                         <form style="padding: 15px;" method="POST" action="{{ route('logout') }}">
                             @csrf
                             <input class="btn btn-success" type="submit" value="logout">
@@ -47,6 +52,7 @@
                     @else
                         <a href="{{ url('login') }}">
                             <i class="fa fa-user" aria-hidden="true"></i>
+                     
                             <span>
                                 Login
                             </span>
