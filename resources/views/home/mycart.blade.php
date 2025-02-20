@@ -31,6 +31,12 @@
 
             border: 1px solid skyblue;
         }
+        .cart_vlaue{
+
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 50px;
+        }
     </style>
 </head>
 
@@ -47,16 +53,33 @@
                     <th>Title</th>
                     <th>Price</th>
                     <th>Image</th>
+                    <th>Action</th>
                 </tr>
+                <?php
+                $value = 0 ;
+
+
+                ?>
                 @foreach ($cart as $cart)
                     <tr>
                         <td>{{ $cart->product->title }}</td>
                         <td>{{ $cart->product->price }}</td>
                         <td><img width="150" src="/products/{{ $cart->product->image }}"></td>
+                        {{-- <td><a href="{{ url('delete_cart' , $cart->id) }}"></a></td> --}}
                     </tr>
                 @endforeach
+
+
+                <?php
+                $value =  $value +  $cart->product->price;
+
+
+                ?>
             </table>
 
+        </div>
+        <div class="cart_vlaue">
+            <h3>Total Value of cart is: {{ $value  }}LYD </h3>
         </div>
 
 
