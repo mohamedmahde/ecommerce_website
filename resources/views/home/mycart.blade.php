@@ -65,7 +65,7 @@
                         <td>{{ $cart->product->title }}</td>
                         <td>{{ $cart->product->price }}</td>
                         <td><img width="150" src="/products/{{ $cart->product->image }}"></td>
-                        {{-- <td><a href="{{ url('delete_cart' , $cart->id) }}"></a></td> --}}
+                        <td><a class="btn btn-danger" href="{{ url('delete_cart' , $cart->id) }}">Remove</a></td>
                     </tr>
                 @endforeach
 

@@ -92,4 +92,11 @@ class HomeController extends Controller
       
         return view('home.mycart' ,compact('count' , 'cart'));
     }
+
+    public function delete_cart($id){
+
+        $delete_cart =  Cart::find($id);
+        $delete_cart->delete();
+        return redirect()->back();
+    }
 }
