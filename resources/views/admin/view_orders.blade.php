@@ -55,6 +55,7 @@
                         <th>Image</th>
                         <th>Status</th>
                         <th>Change Status</th>
+                        <th>Print PDF</th>
 
                     </tr>
                     @foreach ($data as $data)
@@ -73,7 +74,7 @@
                                 @elseif ($data->status == 'one the way')
 
                                     <span style="color:green">{{ $data->status }}</span>
-                                    
+
                                 @else
                                     <span style="color:rgb(212, 226, 20)">{{ $data->status }}</span>
                                 @endif
@@ -82,6 +83,8 @@
                                 <a class="btn btn-primary" href="{{ url('on_the_way', $data->id) }}">On The Way</a>
                                 <a class="btn btn-success" href="{{ url('delivered', $data->id) }}">Delievered</a>
                             </td>
+
+                            <td><a class="btn btn-secondary" href="{{ url('print_pdf' , $data->id) }}">Print PDF</a></td>
 
                         </tr>
                     @endforeach
