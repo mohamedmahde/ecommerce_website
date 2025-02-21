@@ -166,14 +166,31 @@ class AdminController extends Controller
     {
 
         $search = $request->search;
-        $product = Product::where('title', 'LIKE','%' . $search .'%')->orWhere('category', 'LIKE','%' . $search .'%')->paginate(3);
+        $product = Product::where('title', 'LIKE', '%' . $search . '%')->orWhere('category', 'LIKE', '%' . $search . '%')->paginate(3);
 
-        return view('admin.view_product' , compact('product'));
+        return view('admin.view_product', compact('product'));
     }
 
-    public function view_orders(){
+    public function view_orders()
+    {
 
         $data = Order::all();
-        return view('admin.view_orders' , compact('data'));
+        return view('admin.view_orders', compact('data'));
+    }
+
+    public function on_the_way($id)
+    {
+        $data = Order::find($id);
+        $data->status = 'one the way';
+        $data->save();
+        return redirect()->back();
+    }
+
+    public function delivered($id)
+    {
+        $data = Order::find($id);
+        $data->status = 'delivered';
+        $data->save();
+        return redirect()->back();
     }
 }

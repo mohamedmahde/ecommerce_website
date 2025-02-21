@@ -17,14 +17,16 @@
             font-size: 18px;
             font-weight: bold;
             text-align: center;
-            color:white;
+            color: white;
         }
-        td{
+
+        td {
             color: white;
             padding: 10px;
             border: 1px solid skyblue;
         }
-        .table_center{
+
+        .table_center {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -52,21 +54,36 @@
                         <th>Price</th>
                         <th>Image</th>
                         <th>Status</th>
-                    
-                </tr>
-                @foreach ($data as $data)
-                    
-                
-                    <tr>
-                        <td>{{ $data->name }}</td>
-                        <td>{{ $data->rec_address }}</td>
-                        <td>{{ $data->phone }}</td>
-                        <td>{{ $data->product->title }}</td>
-                        <td>{{ $data->product->price }}</td>
-                        <td><img width="100" src="products/{{ $data->product->image }}" alt=""></td>
-                        <td>{{ $data->status }}</td>
+                        <th>Change Status</th>
 
                     </tr>
+                    @foreach ($data as $data)
+                        <tr>
+                            <td>{{ $data->name }}</td>
+                            <td>{{ $data->rec_address }}</td>
+                            <td>{{ $data->phone }}</td>
+                            <td>{{ $data->product->title }}</td>
+                            <td>{{ $data->product->price }}</td>
+                            <td><img width="100" src="products/{{ $data->product->image }}" alt=""></td>
+                            <td>
+                                @if ($data->status == 'in progress')
+
+                                    <span style="color:red">{{ $data->status }}</span>
+
+                                @elseif ($data->status == 'one the way')
+
+                                    <span style="color:green">{{ $data->status }}</span>
+                                    
+                                @else
+                                    <span style="color:rgb(212, 226, 20)">{{ $data->status }}</span>
+                                @endif
+                            </td>
+                            <td>
+                                <a class="btn btn-primary" href="{{ url('on_the_way', $data->id) }}">On The Way</a>
+                                <a class="btn btn-success" href="{{ url('delivered', $data->id) }}">Delievered</a>
+                            </td>
+
+                        </tr>
                     @endforeach
                 </table>
             </div>
