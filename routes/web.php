@@ -40,6 +40,7 @@ Route::get('/delete_product/{id}' , [AdminController::class, 'delete_product'])-
 Route::get('/update_product/{id}' , [AdminController::class, 'update_product'])->middleware(['auth' , 'admin']);
 Route::post('/edit_product/{id}' , [AdminController::class, 'edit_product'])->middleware(['auth' , 'admin']);
 Route::any('/product_search' , [AdminController::class, 'product_search'])->name('product_search')->middleware(['auth' , 'admin']);
+Route::get('/view_orders' , [AdminController::class, 'view_orders'])->name('view_orders')->middleware(['auth' , 'admin']);
 
 
 Route::get('/product_details/{id}' , [HomeController::class, 'product_details']);
