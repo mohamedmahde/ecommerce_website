@@ -35,12 +35,17 @@
                 </li>
             </ul>
             <div class="user_option">
+
+              
                 @if (Route::has('login'))
                     @auth
 
+                    <a href="{{ url('myorders') }}">
+                        My Order                      
+                    </a>
 
                     <a href="{{ url('mycart') }}">
-                      <i class="fa fa-shopping-bag" aria-hidden="true">  {{ $count }}</i>
+                      <i class="fa fa-shopping-bag" aria-hidden="true"> [ {{ $count }}]</i>
                     
                   </a>
 

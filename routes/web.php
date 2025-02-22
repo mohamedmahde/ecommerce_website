@@ -43,7 +43,7 @@ Route::any('/product_search' , [AdminController::class, 'product_search'])->name
 Route::get('/view_orders' , [AdminController::class, 'view_orders'])->name('view_orders')->middleware(['auth' , 'admin']);
 Route::get('/on_the_way/{id}' , [AdminController::class, 'on_the_way'])->name('on_the_way')->middleware(['auth' , 'admin']);
 Route::get('/delivered/{id}' , [AdminController::class, 'delivered'])->name('delivered')->middleware(['auth' , 'admin']);
-Route::get('/print_pdf/{id}' , [AdminController::class, 'print_pdf'])->name('delivered')->middleware(['auth' , 'admin']);
+Route::get('/print_pdf/{id}' , [AdminController::class, 'print_pdf'])->name('print_pdf')->middleware(['auth' , 'admin']);
 
 
 
@@ -53,3 +53,4 @@ Route::get('/add_cart/{id}' , [HomeController::class, 'add_cart'])->middleware([
 Route::get('/mycart' , [HomeController::class, 'mycart'])->middleware(['auth', 'verified']);
 Route::get('/delete_cart/{id}' , [HomeController::class, 'delete_cart'])->middleware(['auth', 'verified']);
 Route::post('/confirm_order' , [HomeController::class, 'confirm_order'])->middleware(['auth', 'verified']);
+Route::get('/myorders' , [HomeController::class, 'myorders'])->middleware(['auth', 'verified']);
