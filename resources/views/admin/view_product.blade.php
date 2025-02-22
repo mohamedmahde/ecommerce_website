@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    @section('title' , 'product')
     @include('admin.css')
 
     <style>
