@@ -59,6 +59,7 @@
                <p>{{ $data->descripton }} </p>  
               </div>
              
+          <a class="btn btn-primary" href="{{ url('add_cart' , $data->id) }}">Add to Card</a>
              
      
           </div>

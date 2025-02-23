@@ -54,6 +54,10 @@ Route::get('/mycart' , [HomeController::class, 'mycart'])->middleware(['auth', '
 Route::get('/delete_cart/{id}' , [HomeController::class, 'delete_cart'])->middleware(['auth', 'verified']);
 Route::post('/confirm_order' , [HomeController::class, 'confirm_order'])->middleware(['auth', 'verified']);
 Route::get('/myorders' , [HomeController::class, 'myorders'])->middleware(['auth', 'verified']);
+Route::get('/shop' , [HomeController::class, 'shop'])->middleware(['auth', 'verified']);
+Route::get('/why' , [HomeController::class, 'why'])->middleware(['auth', 'verified']);
+Route::get('/testimonial' , [HomeController::class, 'testimonial'])->middleware(['auth', 'verified']);
+Route::get('/contact' , [HomeController::class, 'contact'])->middleware(['auth', 'verified']);
 
 
 
